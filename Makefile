@@ -49,6 +49,14 @@ $(BINARY):
 test: dep lint
 	$(GO) test -v -race $(go list ./... | grep -v /vendor/)
 
+.PHONY: docker-build
+docker-build:
+	$(docker) build -t quay.io/sheshagiri0/$(BINARY):$(VERSION) .
+
+.PHONY: docker-push
+docker-push: docker-build
+	$(docker) push quay.io/sheshagiri0/$(BINARY):$(VERSION)
+
 .PHONY: release
 release: lint test
 	mkdir release
