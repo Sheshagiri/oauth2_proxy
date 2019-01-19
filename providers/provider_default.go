@@ -9,7 +9,7 @@ import (
 	"net/http"
 	"net/url"
 
-	"github.com/pusher/oauth2_proxy/cookie"
+	"github.com/Sheshagiri/oauth2_proxy/cookie"
 )
 
 // Redeem provides a default implementation of the OAuth2 token redemption process
