@@ -4,7 +4,7 @@ VERSION := $(shell git describe --always --long --dirty --tags 2>/dev/null || ec
 .NOTPARALLEL:
 
 .PHONY: all
-all: dep lint $(BINARY)
+all: dep $(BINARY)
 
 .PHONY: clean
 clean:
