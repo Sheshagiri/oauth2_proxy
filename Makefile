@@ -46,7 +46,7 @@ $(BINARY):
 	$(GO) build -ldflags="-X main.VERSION=${VERSION}" -o $(BINARY) github.com/pusher/oauth2_proxy
 
 .PHONY: test
-test: dep lint
+test: dep 
 	$(GO) test -v -race $(go list ./... | grep -v /vendor/)
 
 .PHONY: docker-build
