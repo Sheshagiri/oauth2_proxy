@@ -4,7 +4,7 @@ VERSION := $(shell git describe --always --long --dirty --tags 2>/dev/null || ec
 .NOTPARALLEL:
 
 .PHONY: all
-all: dep lint $(BINARY)
+all: dep $(BINARY)
 
 .PHONY: clean
 clean:
@@ -46,8 +46,16 @@ $(BINARY):
 	$(GO) build -ldflags="-X main.VERSION=${VERSION}" -o $(BINARY) github.com/pusher/oauth2_proxy
 
 .PHONY: test
-test: dep lint
+test: dep 
 	$(GO) test -v -race $(go list ./... | grep -v /vendor/)
+
+.PHONY: docker-build
+docker-build:
+	$(docker) build -t quay.io/sheshagiri0/$(BINARY):$(VERSION) .
+
+.PHONY: docker-push
+docker-push: docker-build
+	$(docker) push quay.io/sheshagiri0/$(BINARY):$(VERSION)
 
 .PHONY: release
 release: lint test

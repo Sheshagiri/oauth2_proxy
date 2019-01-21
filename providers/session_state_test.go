@@ -6,7 +6,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/pusher/oauth2_proxy/cookie"
+	"github.com/Sheshagiri/oauth2_proxy/cookie"
 	"github.com/stretchr/testify/assert"
 )
 
